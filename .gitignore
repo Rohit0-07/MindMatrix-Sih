@@ -1,0 +1,6 @@
+kivy_env/
+iconlist.py
+KivyMD/
+__pycache__/
+.DS_Store
+*.pyc

@@ -1,0 +1,110 @@
+<LoginScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "16dp"
+        spacing: "16dp"
+
+        MDIconButton:
+            icon: "theme-light-dark"
+            pos_hint: {"right": 1}
+            on_release: app.switch_theme()
+
+        MDLabel:
+            text: "Login"
+            halign: "center"
+            font_style: "Display"
+            bold: True
+
+        MDBoxLayout:
+            id: segment_control
+            spacing: "8dp"
+            adaptive_height: True
+            MDSegmentedButton:
+                size_hint: 0.9, 1
+                
+                MDSegmentedButtonItem:
+                    active: True
+                    on_release: root.on_segment_change("User")
+                    MDSegmentButtonLabel:
+                        text: "User"
+                    
+                MDSegmentedButtonItem:
+                    on_release: root.on_segment_change("Admin")
+                    MDSegmentButtonLabel:
+                        text: "Admin"
+
+                MDSegmentedButtonItem:
+                    on_release: root.on_segment_change("Dev")
+                    MDSegmentButtonLabel:
+                        text: "Dev"
+                        
+                    
+        MDCard:
+            style: "filled"
+            id: login_card
+            padding: "20dp"
+            spacing: "20dp"
+            orientation: "vertical"
+            size_hint: 1, None
+            size: "300dp", "300dp"
+            pos_hint: {"center_x": .5}
+
+            MDLabel:
+                id: user_choice_label
+                text: "User"
+                halign: "center"
+                font_style: "Headline"
+            MDTextField:
+                id: username
+                mode: "outlined"
+                required: True
+                MDTextFieldHintText:
+                    text: "username"
+                MDTextFieldLeadingIcon:
+                    icon: 'account'
+                # MDTextFieldMaxLengthText:
+                #     max_text_length: 20
+            MDTextField:
+                id: password
+                mode: "outlined"
+                password: True
+                required: True
+                on_text: root.show_password_widget_add(self)
+
+                MDTextFieldHintText:
+                    text: "password"
+                MDTextFieldLeadingIcon:
+                    icon: 'key'
+                MDTextFieldMaxLengthText:
+                    mode: "on_focus"
+                    max_text_length: 12
+                MDTextFieldHelperText:
+                    mode: "on_focus"
+                    text: "max length"
+
+            MDBoxLayout:
+                id: layout_hide_pass
+                padding: 20
+                adaptive_size: True
+                adaptive_width: True
+                pos_hint: {"right": 1}
+            MDBoxLayout:
+                pos_hint: {"center_x": 0.5}
+                adaptive_width: True
+                adaptive_size: True
+                spacing: 20
+                MDButton:
+                    style: "elevated"
+                    on_release: app.root.switch_to_home()
+                    size_hint_x: 1
+                    pos_hint: {"center_x": 0.5}
+                    MDButtonText:
+                        text: "Login"
+
+                MDButton:
+                    style: "elevated"
+                    on_release: app.root.switch_to_home()
+                    size_hint_x: 1
+                    pos_hint: {"center_x": 0.5}
+                    MDButtonText:
+                        text: "Forgot Password"

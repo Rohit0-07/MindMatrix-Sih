@@ -1,0 +1,25 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "16dp"
+        spacing: "16dp"
+
+        MDIconButton:
+            icon: "theme-light-dark"
+            pos_hint: {"right": 1}
+            on_release: app.switch_theme()
+        MDLabel:
+            text: "Welcome to the Home Screen"
+            halign: "center"
+            font_style: "Title"
+
+        MDLabel:
+            text: "You have successfully logged in!"
+            halign: "center"
+
+        MDButton:
+            style: "elevated"
+            on_release: root.manager.current = 'login'
+            pos_hint: {"center_x": .5}
+            MDButtonText:
+                text: "Logout"

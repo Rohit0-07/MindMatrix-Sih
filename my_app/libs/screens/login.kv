@@ -5,6 +5,7 @@
         spacing: "16dp"
 
         MDFloatLayout:
+            id: reg_button
             
             # orientation: 'horizontal'
             # spacing: "8dp"
@@ -15,11 +16,11 @@
                 pos_hint: {"x": 0.0005, "top":1}
                 on_release: app.switch_theme()
 
-            MDIconButton:
-                icon:'account'
-                pos_hint: {"right": 1, "top":1}
-                on_release: app.switch_theme()
-        
+            # MDIconButton:
+            #     icon:'account'
+            #     pos_hint: {"right": 1, "top":1}
+            #     on_release: 
+
         MDLabel:
             text: "Login"
             halign: "center"
@@ -63,7 +64,7 @@
 
             MDLabel:
                 id: user_choice_label
-                padding: "5dp","5dp"
+                padding: "0dp","0dp","5dp","0dp"
                 text: "User"
                 bold: True
                 halign: "center"
@@ -99,16 +100,17 @@
 
             MDBoxLayout:
                 id: layout_hide_pass
-                padding: 20
+                padding: 10
                 adaptive_size: True
                 adaptive_width: True
                 pos_hint: {"right": 1}
+
             MDBoxLayout:
                 orientation: 'vertical'
                 pos_hint: {"center_x": 0.5}
                 # adaptive_width: True
                 adaptive_size: True
-                # spacing: 20
+                spacing: 10
                 MDButton:
                     style: "elevated"
                     on_release: app.root.switch_to_home()

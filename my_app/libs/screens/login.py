@@ -1,20 +1,44 @@
+from kivy.uix.accordion import FloatLayout
 from kivymd.uix.screen import MDScreen
 from kivy.metrics import dp
 from kivy.properties import StringProperty
-from kivymd.uix.button import MDIconButton
+from kivymd.uix.button import MDIconButton,MDButtonText,MDButton
 from kivy.animation import Animation
+from kivy.lang import Builder
 
 class LoginScreen(MDScreen):
     current_user_type = StringProperty("User")  # Default to "User"
-
+    _reg = False
     def on_segment_change(self, user_type):
+        reg_hide_button= MDButton(
+            MDButtonText(
+                text='Register',
+            ),
+            style='text',
+            pos_hint= {"x": 0.75, "top":1},
+            # id= "reg_show",
+            # icon= 'account',
+            
+        )
         self.current_user_type = user_type
-        if user_type == "User":
+        if user_type == "Dev":
+            self.ids.user_choice_label.text = "Dev"
+            if LoginScreen._reg==False:
+                self.ids.reg_button.add_widget(reg_hide_button)
+                LoginScreen._reg=True
+                pass
+        elif user_type == "User":
             self.ids.user_choice_label.text = "User"
+            if LoginScreen._reg == True:
+                self.ids.reg_button.remove_widget(self.ids.reg_button.children[0])
+                LoginScreen._reg =False
+                pass
         elif user_type == "Admin":
             self.ids.user_choice_label.text = "Admin"
-        elif user_type == "Dev":
-            self.ids.user_choice_label.text = "Dev"
+            if LoginScreen._reg == True:
+                self.ids.reg_button.remove_widget(self.ids.reg_button.children[0])
+                LoginScreen._reg =False
+                pass
     
     _once = False
     def show_password_widget_add(self, instance):

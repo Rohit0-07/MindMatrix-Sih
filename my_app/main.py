@@ -36,7 +36,7 @@ class MainApp(MDApp):
         return sm
 
     def switch_theme(self):
-        self.theme_cls.primary_palette = "Purple" if self.theme_cls.primary_palette == "Orange" else "Orange"
+        self.theme_cls.primary_palette = "Blue" if self.theme_cls.primary_palette == "Orange" else "Orange"
         self.theme_cls.theme_style = "Dark" if self.theme_cls.theme_style == "Light" else "Light"
 
 if __name__ == '__main__':

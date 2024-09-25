@@ -4,11 +4,22 @@
         padding: "16dp"
         spacing: "16dp"
 
-        MDIconButton:
-            icon: "theme-light-dark"
-            pos_hint: {"right": 1}
-            on_release: app.switch_theme()
+        MDFloatLayout:
+            
+            # orientation: 'horizontal'
+            # spacing: "8dp"
+            # adaptive_width: True
+            # adaptive_height: True
+            MDIconButton:
+                icon: "theme-light-dark"
+                pos_hint: {"x": 0.0005, "top":1}
+                on_release: app.switch_theme()
 
+            MDIconButton:
+                icon:'account'
+                pos_hint: {"right": 1, "top":1}
+                on_release: app.switch_theme()
+        
         MDLabel:
             text: "Login"
             halign: "center"
@@ -18,10 +29,11 @@
         MDBoxLayout:
             id: segment_control
             spacing: "8dp"
-            adaptive_height: True
+            # adaptive_height: True
             MDSegmentedButton:
                 size_hint: 0.9, 1
-                
+                hiding_icon_duration: 0.1
+                # opening_icon_duration: 0.1
                 MDSegmentedButtonItem:
                     active: True
                     on_release: root.on_segment_change("User")
@@ -46,14 +58,17 @@
             spacing: "20dp"
             orientation: "vertical"
             size_hint: 1, None
-            size: "300dp", "320dp"
+            size: "300dp", "380dp"
             pos_hint: {"center_x": .5}
 
             MDLabel:
                 id: user_choice_label
+                padding: "5dp","5dp"
                 text: "User"
+                bold: True
                 halign: "center"
-                font_style: "Headline"
+                font_style: "Title"
+
             MDTextField:
                 id: username
                 mode: "outlined"
@@ -89,10 +104,11 @@
                 adaptive_width: True
                 pos_hint: {"right": 1}
             MDBoxLayout:
+                orientation: 'vertical'
                 pos_hint: {"center_x": 0.5}
-                adaptive_width: True
+                # adaptive_width: True
                 adaptive_size: True
-                spacing: 20
+                # spacing: 20
                 MDButton:
                     style: "elevated"
                     on_release: app.root.switch_to_home()

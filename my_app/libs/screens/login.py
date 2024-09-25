@@ -28,12 +28,12 @@ class LoginScreen(MDScreen):
             )
             if not LoginScreen._once:
                 self.ids.layout_hide_pass.add_widget(pass_hide_button)
-                self.animate_card_size(dp(300), dp(350))
+                self.animate_card_size(dp(300), dp(360))
                 LoginScreen._once = True
         else:
             if LoginScreen._once:
                 self.ids.layout_hide_pass.remove_widget(self.ids.layout_hide_pass.children[0])
-                self.animate_card_size(dp(300), dp(300))
+                self.animate_card_size(dp(300), dp(320))
                 LoginScreen._once = False
         
     def animate_card_size(self, width, height):

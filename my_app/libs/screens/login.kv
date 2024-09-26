@@ -19,7 +19,7 @@
             # MDIconButton:
             #     icon:'account'
             #     pos_hint: {"right": 1, "top":1}
-            #     on_release: 
+            #     on_release: app.root.switch_to_authenticate()
 
         MDLabel:
             text: "Login"
@@ -50,7 +50,6 @@
                     on_release: root.on_segment_change("Dev")
                     MDSegmentButtonLabel:
                         text: "Dev"
-                        
                     
         MDCard:
             style: "filled"

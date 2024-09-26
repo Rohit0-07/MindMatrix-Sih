@@ -4,11 +4,10 @@ from kivy.metrics import dp
 from kivy.properties import StringProperty
 from kivymd.uix.button import MDIconButton,MDButtonText,MDButton
 from kivy.animation import Animation
-from kivy.lang import Builder
-
 class LoginScreen(MDScreen):
     current_user_type = StringProperty("User")  # Default to "User"
     _reg = False
+        
     def on_segment_change(self, user_type):
         reg_hide_button= MDButton(
             MDButtonText(
@@ -18,7 +17,7 @@ class LoginScreen(MDScreen):
             pos_hint= {"x": 0.75, "top":1},
             # id= "reg_show",
             # icon= 'account',
-            
+            on_release = self.manager.switch_to_authenticate
         )
         self.current_user_type = user_type
         if user_type == "Dev":
@@ -68,7 +67,6 @@ class LoginScreen(MDScreen):
     def show_pass(self, instance):
         instance.icon = "eye" if instance.icon == "eye-off" else "eye-off"
         self.ids.password.password = False if instance.icon == "eye" else True
-        
         
     #yet to be implemented
     def login(self, username, password, user_type):

@@ -1,0 +1,90 @@
+<RegisterationScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "16dp"
+        spacing: "16dp"
+        MDFloatLayout:
+            id: layout_reg_float 
+            MDIconButton:
+                icon: "theme-light-dark"
+                pos_hint: {"top": 1, "right": 1}
+                on_release: app.switch_theme()
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"top": 1, "left": 1}
+                on_release: app.root.switch_to_login()
+
+        MDLabel:
+            text: "Register"
+            halign: "center"
+            font_style: "Display"
+            bold: True
+
+        MDCard:
+            style: "filled"
+            id: login_card_registeration
+            padding: "30dp"
+            spacing: "30dp"
+            orientation: "vertical"
+            size_hint: 1, None
+            size: "300dp", "430dp"
+            pos_hint: {"center_x": .5, "center_y": 1}
+
+
+            MDTextField:
+                id: email_registeraion
+                mode: "outlined"
+                # validator: 'email'
+                required: True
+                on_text: root.update_helper_text(self, 'email')
+                MDTextFieldHintText:
+                    text: "Email"
+                MDTextFieldLeadingIcon:
+                    icon: 'email'
+                MDTextFieldHelperText:
+                    id: helper_email
+                    text: "Abc@gmail.com"
+
+            MDTextField:
+                id: name_registeration
+                mode: "outlined"
+                required: True
+                on_text: root.update_helper_text(self, 'name')
+                MDTextFieldHintText:
+                    text: "Name"
+                MDTextFieldLeadingIcon:
+                    icon: 'account'
+                MDTextFieldHelperText:
+                    id: helper_name
+                    text: "Enter your name"
+
+            MDTextField:
+                id: password_registeraion
+                mode: "outlined"
+                required: True
+                on_text: root.update_helper_text(self, 'password')
+                MDTextFieldHintText:
+                    text: "Password"
+                MDTextFieldLeadingIcon:
+                    icon: 'key'
+                MDTextFieldHelperText:
+                    text: "Set password"
+
+            MDTextField:
+                id: password_registeraion_c
+                mode: "outlined"
+                required: True
+                on_text: root.update_helper_text(self, 'password_c')
+                MDTextFieldHintText:
+                    text: "Confirm Password"
+                MDTextFieldLeadingIcon:
+                    icon: 'key'
+                MDTextFieldHelperText:
+                    text: "Re-enter"
+
+            MDButton:
+                center_x: 1
+                style: "elevated"
+                on_press: root.validate_all(self)
+                MDButtonText: 
+                    text: "Submit"

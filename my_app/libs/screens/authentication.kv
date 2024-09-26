@@ -1,0 +1,86 @@
+<AuthenticationScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "16dp"
+        spacing: "16dp"
+        MDFloatLayout:
+            id: layout_auth_float 
+            MDIconButton:
+                icon: "theme-light-dark"
+                pos_hint: {"top": 1, "right": 1}
+                on_release: app.switch_theme()
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"top": 1, "left": 1}
+                on_release: app.root.switch_to_login()
+
+        MDLabel:
+            text: "Welcome"
+            halign: "center"
+            font_style: "Display"
+            bold: True
+
+        MDCard:
+            style: "filled"
+            id: login_card_auth
+            padding: "30dp"
+            spacing: "30dp"
+            orientation: "vertical"
+            size_hint: 1, None
+            size: "300dp", "350dp"
+            pos_hint: {"center_x": .5, "center_y": 1}
+
+
+            MDTextField:
+                id: email_auth
+                mode: "outlined"
+                # validator: 'email'
+                required: True
+                on_text: root.update_helper_text(self, 'email')
+                MDTextFieldHintText:
+                    text: "Email"
+                MDTextFieldLeadingIcon:
+                    icon: 'email'
+                MDTextFieldHelperText:
+                    id: helper_email
+                    text: "Abc@gmail.com"
+
+            MDTextField:
+                id: otp_auth
+                mode: "outlined"
+                required: True
+                on_text: root.update_helper_text(self, 'name')
+                MDTextFieldHintText:
+                    text: "OTP"
+                MDTextFieldLeadingIcon:
+                    icon: 'key'
+                MDTextFieldHelperText:
+                    text: "Enter Otp"
+                MDTextFieldMaxLengthText:
+                    max_text_length: 6
+
+
+            MDBoxLayout:
+                center_x: 0.5
+                orientation: 'vertical'
+                spacing: "15dp"
+                adaptive_size: True
+                MDButton:
+                    center_x: 1
+                    style: "elevated"
+                    # on_press: 
+                    MDButtonText: 
+                        text: "Send OTP"
+                MDButton:
+                    center_x: 1
+                    style: "elevated"
+                    # on_press: 
+                    MDButtonText: 
+                        text: "Re-Send OTP"
+
+                MDButton:
+                    center_x: 1
+                    style: "elevated"
+                    on_release: app.root.switch_to_register() 
+                    MDButtonText: 
+                        text: "Confirm"

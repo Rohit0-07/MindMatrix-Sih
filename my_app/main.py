@@ -10,15 +10,39 @@ from libs.screens.registeration import RegisterationScreen
 from libs.screens.authentication import AuthenticationScreen
 class MyScreenManager(MDScreenManager):
     def switch_to_login(self):
+        self.remove_widget(self.get_screen('login'))
+        # Builder.unload_file('libs/screens/login.kv')  # Force reload kv file
+        # Builder.load_file('libs/screens/login.kv')  # Force reload kv file
+        self.add_widget(LoginScreen(name = "login",
+                                    md_bg_color= self.theme_cls.backgroundColor
+                                    ))
         self.current = "login"
 
     def switch_to_home(self):
+        self.remove_widget(self.get_screen('home'))
+        # Builder.unload_file('libs/screens/home.kv')  # Force reload kv file
+        # Builder.load_file('libs/screens/home.kv')  # Force reload kv file
+        self.add_widget(HomeScreen(name= "home",
+                                    md_bg_color= self.theme_cls.backgroundColor
+                                   ))
         self.current = "home"
 
     def switch_to_register(self):
+        self.remove_widget(self.get_screen('register'))
+        # Builder.unload_file('libs/screens/registeration.kv')  # Force reload kv file
+        # Builder.load_file('libs/screens/registeration.kv')  # Force reload kv file
+        self.add_widget(RegisterationScreen(name= "register",
+                                            md_bg_color= self.theme_cls.backgroundColor
+                                            ))
         self.current = "register"
 
     def switch_to_authenticate(self, *args):
+        self.remove_widget(self.get_screen('authenticate'))
+        # Builder.unload_file('libs/screens/authentication.kv')  # Force reload kv file
+        # Builder.load_file('libs/screens/authentication.kv')  # Force reload kv file
+        self.add_widget(AuthenticationScreen(name = "authenticate",
+                                            md_bg_color= self.theme_cls.backgroundColor
+                                             ))
         self.current = "authenticate"
         
 class MainApp(MDApp):
@@ -36,21 +60,25 @@ class MainApp(MDApp):
         Builder.load_file('libs/screens/authentication.kv')
 
         # Create the screen instances
-        login_screen = LoginScreen()
-        home_screen = HomeScreen()
-        authenticate_screen = AuthenticationScreen()
-        registeration_screen = RegisterationScreen()
+        login_screen = LoginScreen(name= "login")
+        home_screen = HomeScreen(name= "home")
+        authenticate_screen = AuthenticationScreen(name= "authenticate")
+        registeration_screen = RegisterationScreen(name= "register")
 
         sm = MyScreenManager(transition=MDFadeSlideTransition(duration=0.1))
         sm.add_widget(login_screen)
         sm.add_widget(home_screen)
-        sm.add_widget(authenticate_screen)
         sm.add_widget(registeration_screen)
+        sm.add_widget(authenticate_screen)
         return sm
 
     def switch_theme(self):
+        # self.root.screens.theme_cls.primary_palette = "Blue" if self.theme_cls.primary_palette == "Orange" else "Orange"
+        # self.root.screens.theme_cls.theme_style = "Dark" if self.theme_cls.theme_style == "Light" else "Light"
         self.theme_cls.primary_palette = "Blue" if self.theme_cls.primary_palette == "Orange" else "Orange"
         self.theme_cls.theme_style = "Dark" if self.theme_cls.theme_style == "Light" else "Light"
-
+        # Update background color for all screens
+        for screen in self.root.screens:
+            screen.md_bg_color = self.theme_cls.backgroundColor
 if __name__ == '__main__':
     MainApp().run()

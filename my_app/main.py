@@ -8,6 +8,12 @@ from libs.screens.login import LoginScreen
 from libs.screens.home import HomeScreen
 from libs.screens.registeration import RegisterationScreen
 from libs.screens.authentication import AuthenticationScreen
+
+Builder.load_file('libs/screens/login.kv')
+Builder.load_file('libs/screens/home.kv')
+Builder.load_file('libs/screens/registeration.kv')
+Builder.load_file('libs/screens/authentication.kv')
+
 class MyScreenManager(MDScreenManager):
     def switch_to_login(self):
         self.remove_widget(self.get_screen('login'))
@@ -52,12 +58,6 @@ class MainApp(MDApp):
         self.theme_cls.primary_palette = "Orange"
         self.theme_cls.theme_style = "Light"
         Window.size = (340, 640)  # Common mobile phone size
-
-        # Load the KV files directly in the build method
-        Builder.load_file('libs/screens/login.kv')
-        Builder.load_file('libs/screens/home.kv')
-        Builder.load_file('libs/screens/registeration.kv')
-        Builder.load_file('libs/screens/authentication.kv')
 
         # Create the screen instances
         login_screen = LoginScreen(name= "login")
